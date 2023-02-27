@@ -13,7 +13,11 @@ def RunMenu(menuList):
     
       menuChoice  = int(input("\nPlease make a selection from the list provided:\n")) 
     
-      return menuChoice 
+      return menuChoice #returns the user's input
+
+    except ValueError: #triggers when the user enters a non-integer value
+      print("\nError! An unknown bug as occured, please try again...")
+      input("[Press Enter to Try Again]\n\n") 
       
     except: #triggers exception - no specific condition required
       print("\nError! An unknown bug as occured, please try again...")

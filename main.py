@@ -1,28 +1,44 @@
+class MenuOutOfRange(Exception):
+    #This class is for triggering a custom exception
+    pass
+
 def RunMenu(menuList):
 
-  continueLoop = True
-  while continueLoop == True:
+    continueLoop = True
+    while continueLoop == True:
 
-    try: #tells the compiler to attempt the code indented, passing to an exception if an error occurs
-      
-      
-      print(menuList[0]) #start txt to the screen with the initial value in the passed list
-    
-      for x in range(1, len(menuList)): #Loops from 1
-        print(x, ": ", menuList[x]) #prints out a formatted txt screen
-    
-      menuChoice  = int(input("\nPlease make a selection from the list provided:\n")) 
-    
-      return menuChoice #returns the user's input
+        try: #Tells the compiler to attempt the code indented, passing to an exception if an error occurs
+            
+           
+            print(menuList[0])  #Start text to the screen with the initial value in the passed list
 
-    except ValueError: #triggers when the user enters a non-integer value
-      print("\nError! An unknown bug as occured, please try again...")
-      input("[Press Enter to Try Again]\n\n") 
-      
-    except: #triggers exception - no specific condition required
-      print("\nError! An unknown bug as occured, please try again...")
-      input("[Press Enter to Try Again]\n\n") 
+            for x in range(1, len(menuList)): #Loops from 1 (because be have used index 0 already), until the end of the indexes in our passed list
+                print(str(x) + ": " + menuList[x]) #Prints out a formatted text screen, using the text passed up to the function inside the list, using x as the index counter
 
+            menuChoice = int(input("\nPlease make a selection from the list provided:\n")) #Requests the user enter an int - then saves it into the variable assignment
+
+            if menuChoice > len(menuList) - 1 or menuChoice < 1:
+                raise MenuOutOfRange #Raises the custom exception if the IF statement validates as TRUE
+
+        except MenuOutOfRange: #Triggers when the user enters a value outside of the list range provided
+
+            print("\n\nError! PLease only enter a number from the list indicated, please try again...")
+            input("[Press Enter to Try Again]\n\n")
+
+        except ValueError: #Triggers when the user enters a non-integer value
+
+            print("\n\nError! PLease only enter a valid whole number, please try again...")
+            input("[Press Enter to Try Again]\n\n")
+
+        except: #Triggers exception - no specific condition required.
+
+            print("\n\nError! An unknown bug as occurred, please try again...")
+            input("[Press Enter to Try Again]\n\n")
+
+        else: #Triggers only when no exception has been raised!
+
+            continueLoop = False
+            return menuChoice #Returns the user's input
 
 continueLoop = True
 while continueLoop == True:

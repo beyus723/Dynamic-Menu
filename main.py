@@ -1,14 +1,23 @@
 def RunMenu(menuList):
 
-  #3
-  print(menuList[0])
+  continueLoop = True
+  while continueLoop == True:
 
-  for x in range(1, len(menuList)):
-    print(x, ": ", menuList[x])
-
-  menuChoice  = int(input("\nPlease make a selection from the list provided:\n"))
-
-  return menuChoice 
+    try: #tells the compiler to attempt the code indented, passing to an exception if an error occurs
+      
+      
+      print(menuList[0]) #start txt to the screen with the initial value in the passed list
+    
+      for x in range(1, len(menuList)): #Loops from 1
+        print(x, ": ", menuList[x]) #prints out a formatted txt screen
+    
+      menuChoice  = int(input("\nPlease make a selection from the list provided:\n")) 
+    
+      return menuChoice 
+      
+    except: #triggers exception - no specific condition required
+      print("\nError! An unknown bug as occured, please try again...")
+      input("[Press Enter to Try Again]\n\n") 
 
 
 continueLoop = True
